@@ -62,7 +62,7 @@ class SiConverterService
 			begin 
 				arguments = parse_input(input)
 				output = run_calculation(arguments, input)
-				res = {unit_name: output[:new_name], multiplication_factor: output[:multiplier]}
+				res = {unit_name: output[:new_name], multiplication_factor: output[:multiplier].round(14)}
 			rescue => e
 				res = {error: e.message}
 			end
