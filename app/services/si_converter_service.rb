@@ -59,9 +59,13 @@ class SiConverterService
 
 		def convert(input)
 			# converts a non-si string of units into si units and a multiplier
-			arguments = parse_input(input)
-			output = run_calculation(arguments, input)
-			{unit_name: output[:new_name], multiplier: output[:multiplier]}
+			begin 
+				arguments = parse_input(input)
+				output = run_calculation(arguments, input)
+				res = {unit_name: output[:new_name], multiplication_factor: output[:multiplier]}
+			rescue => e
+				res = {error: e.message}
+			end
 		end
 
 		def parse_input(input)
